@@ -13,12 +13,14 @@ public class AuthenticationPage extends BasePage{
 
     public String endpoint = "index.php?controller=authentication&back=my-account";
 
-    private static final By SIGN_IN_BUTTON = By.id("SubmitLogin");
+    private static final By EMAIL_CREATE_INPUT = By.id ("email_create");
     private static final By EMAIL_INPUT = By.id("email");
     private static final By PASSWORD_INPUT = By.id("passwd");
     public static final String EMAIL = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));
     public static final String PASSWORD = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
     private static final By ERROR = By.cssSelector(".alert.alert-danger");
+    private static final By CREATE_ACCOUNT_BUTTON = By.id("SubmitCreate");
+    private static final By SIGN_IN_BUTTON = By.id("SubmitLogin");
 
 
     public AuthenticationPage(WebDriver driver) {
@@ -33,18 +35,30 @@ public class AuthenticationPage extends BasePage{
     public AuthenticationPage filInThePasswordField(String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
 
-        log.info("Set password: " + password);
-
         return this;
     }
+
     public void clickLoginButton() {
         driver.findElement(SIGN_IN_BUTTON).click();
 
     }
     // TO DO переход на страниу мой аккаунт
     public String getErrorMessage() {
+
         return driver.findElement(ERROR).getText();
     }
+    public AuthenticationPage setEmailCreate(String email) {
+        driver.findElement(EMAIL_CREATE_INPUT).sendKeys(email);
+
+        return this;
+    }
+
+    public CreateAccountPage clickCreateAccountButton() {
+        driver.findElement(CREATE_ACCOUNT_BUTTON).click();
+
+        return new CreateAccountPage(driver);
+    }
+
 
     @Override
     public AuthenticationPage isPageOpened() {
@@ -61,6 +75,7 @@ public class AuthenticationPage extends BasePage{
     public AuthenticationPage openPage() {
         driver.get(URL + endpoint);
         isPageOpened();
+
         return this;
     }
 

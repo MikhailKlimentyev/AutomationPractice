@@ -3,13 +3,15 @@ package tests;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.AuthenticationPage;
+import pages.CreateAccountPage;
 import pages.HomePage;
+import steps.CreateAccountSteps;
 import steps.LoginSteps;
+import utils.TestData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +20,10 @@ public class BaseTest {
     WebDriver driver;
     HomePage homePage;
     LoginSteps loginSteps;
-    public AuthenticationPage authenticationPage;
+    AuthenticationPage authenticationPage;
+    CreateAccountPage createAccountPage;
+    CreateAccountSteps createAccountSteps;
+    TestData testData;
 
 
 
@@ -33,8 +38,13 @@ public class BaseTest {
         String variable = "driver";
         homePage = new HomePage(driver);
         authenticationPage = new AuthenticationPage(driver);
+        createAccountPage = new CreateAccountPage(driver);
 
         loginSteps = new LoginSteps(driver);
+        createAccountSteps = new CreateAccountSteps(driver);
+
+        testData = new TestData(driver);
+
 
         System.out.println("Setting driver into context with variable name " + variable);
         context.setAttribute(variable, driver);

@@ -1,6 +1,5 @@
 package pages;
 
-import io.qameta.allure.AllureUtils;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -48,6 +47,5 @@ public class HomePage extends BasePage {
         driver.findElement(By.linkText(productName)).click();
 
         return this; //вернуть страницу продукта
-
 
 }}

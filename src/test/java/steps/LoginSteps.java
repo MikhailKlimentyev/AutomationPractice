@@ -20,15 +20,8 @@ public class LoginSteps extends BaseTest {
 
         return this;
     }
-    @Step("fill in the email and password fields")
+    @Step("Fill in the email and password fields")
     public LoginSteps attemptToLogin(String email, String password) {
-        authenticationPage.filInTheEmailField(email);
-        authenticationPage.filInThePasswordField(password);
-
-        return this;
-    }
-    @Step("fill in incorrect the email and password fields")
-    public LoginSteps attemptToLoginWithINCORRECT_EMAIL(String email, String password) {
         authenticationPage.filInTheEmailField(email);
         authenticationPage.filInThePasswordField(password);
 
