@@ -14,7 +14,8 @@ public class LoginTest extends BaseTest {
     public void loginWithCorrectData() {
         loginSteps.openPage()
                 .attemptToLogin(AuthenticationPage.EMAIL, AuthenticationPage.PASSWORD)
-                .clickSignInButton();
+                .clickSignInButton()
+                .checkLoginSuccessful();
     }
 
     @Test
@@ -24,6 +25,7 @@ public class LoginTest extends BaseTest {
                 .clickSignInButton();
         assertEquals(authenticationPage.getErrorMessage(), "There is 1 error\n" + "Invalid email address.");
     }
+    //завести ассерты в степы?
 
     @Test
     public void loginWithINCORRECT_PASSWORD() {

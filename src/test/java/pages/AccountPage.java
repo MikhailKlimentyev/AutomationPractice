@@ -1,6 +1,5 @@
 package pages;
 
-import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -13,27 +12,26 @@ import org.testng.Assert;
 public class AccountPage extends BasePage {
     public String endpoint = "index.php?controller=my-account";
 
-    private static final By HEADING_USER_NAME_TEXT = By.xpath("//div[@class='header_user_info']//a//span");
-    private static final By LOGO = By.id("header_logo");;
+    private static final By LOGO = By.id("header_logo");
     private static final By LOG_OUT_BUTTON = By.cssSelector(".logout");
 
     public AccountPage(WebDriver driver) {
         super(driver);
     }
 
-    public String getHeadingUserName() {
-        String userName =  driver.findElement(HEADING_USER_NAME_TEXT).getText();
-
-        return userName;
-    }
 
     public HomePage clickOnLogo() {
         driver.findElement(LOGO).click();
 
         return new HomePage(driver);
     }
+
     public String getUrl() {
         return URL + endpoint;
+    }
+
+    public String actualUrl() {
+        return driver.getCurrentUrl();
     }
 
     @Override
