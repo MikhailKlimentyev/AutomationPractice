@@ -2,8 +2,7 @@ package tests;
 
 import org.testng.annotations.Test;
 import pages.AuthenticationPage;
-
-import static org.testng.Assert.assertEquals;
+import utils.TestData;
 
 public class LoginTest extends BaseTest {
     public static String EMPTY_STRING = "";
@@ -15,41 +14,39 @@ public class LoginTest extends BaseTest {
         loginSteps.openPage()
                 .attemptToLogin(AuthenticationPage.EMAIL, AuthenticationPage.PASSWORD)
                 .clickSignInButton()
-                .checkLoginSuccessful();
+                .checkLoginSuccessful(TestData.newUser());
     }
 
     @Test
-    public void loginWithINCORRECT_EMAIL() {
+    public void loginWithIncorrectEmail() {
         loginSteps.openPage()
                 .attemptToLogin(INCORRECT_EMAIL, AuthenticationPage.PASSWORD)
-                .clickSignInButton();
-        assertEquals(authenticationPage.getErrorMessage(), "There is 1 error\n" + "Invalid email address.");
+                .clickSignInButton()
+                .validateErrorMessageWithIncorrectEmail();
     }
-    //завести ассерты в степы?
 
     @Test
-    public void loginWithINCORRECT_PASSWORD() {
+    public void loginWithIncorrectPassword() {
         loginSteps.openPage()
                 .attemptToLogin(AuthenticationPage.EMAIL, INCORRECT_PASSWORD)
-                .clickSignInButton();
-        assertEquals(authenticationPage.getErrorMessage(), "There is 1 error\n" + "Authentication failed.");
+                .clickSignInButton()
+                .validateErrorMessageWithIncorrectPassword();
     }
 
     @Test
     public void emailShouldBeEmpty() {
         loginSteps.openPage()
                 .attemptToLogin(EMPTY_STRING, AuthenticationPage.PASSWORD)
-                .clickSignInButton();
-        assertEquals(authenticationPage.getErrorMessage(), "There is 1 error\n" + "An email address required.");
+                .clickSignInButton()
+                .validateErrorMessageWithEmptyEmail();
     }
 
     @Test
     public void passwordShouldBeEmpty() {
         loginSteps.openPage()
                 .attemptToLogin(AuthenticationPage.EMAIL, EMPTY_STRING)
-                .clickSignInButton();
-        assertEquals(authenticationPage.getErrorMessage(), "There is 1 error\n" + "Password is required.");
+                .clickSignInButton()
+                .validateErrorMessageWithEmptyPassword();
     }
-
 
 }

@@ -8,9 +8,9 @@ public class CreateAccountTest extends BaseTest {
     @Test
     public void createNewUser() {
         createAccountSteps
-                .openPage(testData.newUser().getEmail())
-                .fillRequiredRegisterData(testData.newUser())
-                .ClickRegisterButton();
+                .openPage(TestData.newUser().getEmail())
+                .fillRequiredRegisterData(TestData.newUser())
+                .clickRegisterButton();
 //                .checkRegistrationSuccessful();
     }
 }

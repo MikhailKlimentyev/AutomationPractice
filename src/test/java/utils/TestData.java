@@ -1,18 +1,14 @@
 package utils;
 
 import models.User;
-import org.openqa.selenium.WebDriver;
 
 public class TestData {
 
-    public TestData(WebDriver driver) {
-    }
-
-    public User newUser(){
-        User user = User.builder()
+    public static User newUser() {
+        return User.builder()
                 .firstName("TestFirstName")
                 .lastName("TestLastName")
-                .email("TestEmail1@malinator.com")
+                .email("TestEmail11@malinator.com")
                 .password("12345qwer")
                 .address("Test address 12")
                 .city("Minsk")
@@ -21,6 +17,5 @@ public class TestData {
                 .country("United States")
                 .phone("37529123456")
                 .build();
-        return user;
     }
 }

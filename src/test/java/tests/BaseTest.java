@@ -11,7 +11,6 @@ import pages.CreateAccountPage;
 import pages.HomePage;
 import steps.CreateAccountSteps;
 import steps.LoginSteps;
-import utils.TestData;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,9 +22,6 @@ public class BaseTest {
     AuthenticationPage authenticationPage;
     CreateAccountPage createAccountPage;
     CreateAccountSteps createAccountSteps;
-    TestData testData;
-
-
 
     @BeforeMethod
     public void setup(ITestContext context) {
@@ -39,14 +35,8 @@ public class BaseTest {
         homePage = new HomePage(driver);
         authenticationPage = new AuthenticationPage(driver);
         createAccountPage = new CreateAccountPage(driver);
-
         loginSteps = new LoginSteps(driver);
         createAccountSteps = new CreateAccountSteps(driver);
-
-        testData = new TestData(driver);
-
-
-        System.out.println("Setting driver into context with variable name " + variable);
         context.setAttribute(variable, driver);
     }
 
