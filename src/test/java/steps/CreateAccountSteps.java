@@ -22,10 +22,10 @@ public class CreateAccountSteps extends BaseTest {
     }
 
     @Step("Fill in new {user.email} and open Create Account page")
-    public CreateAccountSteps openPage(String email) {
+    public CreateAccountSteps openPage(User user) {
         authenticationPage
                 .openPage()
-                .setEmailCreate(email)
+                .setEmailCreate(user.getEmail())
                 .clickCreateAccountButton();
         createAccountPage
                 .isPageOpened();
