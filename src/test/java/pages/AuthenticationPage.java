@@ -3,13 +3,12 @@ package pages;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import utils.PropertyReader;
 
 @Log4j2
 public class AuthenticationPage extends BasePage {
 
-    public static final String EMAIL = System.getenv().getOrDefault("email", PropertyReader.getProperty("email"));
-    public static final String PASSWORD = System.getenv().getOrDefault("password", PropertyReader.getProperty("password"));
+    public static final String EMAIL = System.getenv("email");
+    public static final String PASSWORD = System.getenv("password");
     private static final By EMAIL_CREATE_INPUT = By.id("email_create");
     private static final By EMAIL_INPUT = By.id("email");
     private static final By PASSWORD_INPUT = By.id("passwd");

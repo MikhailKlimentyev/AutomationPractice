@@ -6,10 +6,12 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.*;
+import pages.AuthenticationPage;
+import pages.CreateAccountPage;
+import pages.HomePage;
 import steps.CreateAccountSteps;
 import steps.LoginSteps;
-import steps.OrderSteps;
+import utils.CapabilitiesGenerator;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,10 +29,11 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup(ITestContext context) {
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/webdrivers/chromedriver.exe");
+        ;
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(false);
-        driver = new ChromeDriver(options);
+        driver = new ChromeDriver(CapabilitiesGenerator.getChromeOptions());
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         String variable = "driver";
