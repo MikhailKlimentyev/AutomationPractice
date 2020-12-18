@@ -29,8 +29,8 @@ public class HomePage extends BasePage {
         return new AuthenticationPage(driver);
     }
 
-    public HomePage openProductByName(String productName) {
+    public ProductPage openProductByName(String productName) {
         driver.findElement(By.linkText(productName)).click();
-        return this; //вернуть страницу продукта
+        return new ProductPage(driver);
     }
 }

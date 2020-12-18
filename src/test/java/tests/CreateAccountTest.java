@@ -10,7 +10,7 @@ public class CreateAccountTest extends BaseTest {
         createAccountSteps
                 .openPage(TestData.newUser())
                 .fillRequiredRegisterData(TestData.newUser())
-                .clickRegisterButton();
-//                .checkRegistrationSuccessful();
+                .clickRegisterButton()
+                .checkLoginSuccessful(TestData.newUser());
     }
 }

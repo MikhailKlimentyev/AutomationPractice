@@ -5,11 +5,10 @@ import models.User;
 import org.openqa.selenium.WebDriver;
 import pages.AccountPage;
 import pages.AuthenticationPage;
-import tests.BaseTest;
 
 import static org.testng.Assert.assertEquals;
 
-public class LoginSteps extends BaseTest {
+public class LoginSteps {
 
     AuthenticationPage authenticationPage;
     AccountPage accountPage;
