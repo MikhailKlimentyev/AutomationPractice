@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class OrderPage extends BasePage {
-    private static final By CONFIRM_SUMMARY_BUTTON = By.xpath("//a[@class='button btn btn-default standard-checkout button-medium']");
-    private static final By ADDRESS_NAME_TEXT = By.xpath("//ul[@class='address first_item item box']//span[@class='address_name']");
-    private static final By ADDRESS_TEXT = By.xpath("//ul[@class='address first_item item box']//span[@class='address_address1']");
-    private static final By ADDRESS_CITY_TEXT = By.xpath("//ul[@class='address first_item item box']//span[@class='address_city']");
-    private static final By ADDRESS_PHONE_TEXT = By.xpath("//ul[@class='address first_item item box']//span[@class='address_phone_mobile']");
+    private static final By CONFIRM_SUMMARY_BUTTON = By.xpath("//*[contains(@class,'standard-checkout')]");
+    private static final By ADDRESS_NAME_TEXT = By.xpath("//*[contains(@class,'first_item')]//span[@class='address_name']");
+    private static final By ADDRESS_TEXT = By.xpath("//*[contains(@class,'first_item')]//span[@class='address_address1']");
+    private static final By ADDRESS_CITY_TEXT = By.xpath("//*[contains(@class,'first_item')]//span[@class='address_city']");
+    private static final By ADDRESS_PHONE_TEXT = By.xpath("//*[contains(@class,'first_item')]//span[@class='address_phone_mobile']");
 
     public OrderPage(WebDriver driver) {
         super(driver);
