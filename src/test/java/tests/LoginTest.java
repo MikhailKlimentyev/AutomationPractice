@@ -9,7 +9,7 @@ public class LoginTest extends BaseTest {
     public static String INCORRECT_EMAIL = "ghjd%$:125'?ikil@gmail.com";
     public static String INCORRECT_PASSWORD = "698$2%$:fhj'354787";
 
-    @Test
+    @Test(description = "Login with correct user data")
     public void loginWithCorrectData() {
         loginSteps.openPage()
                 .attemptToLogin(AuthenticationPage.EMAIL, AuthenticationPage.PASSWORD)
@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
                 .checkLoginSuccessful(TestData.newUser());
     }
 
-    @Test
+    @Test(description = "Try to log in with an incorrect email")
     public void loginWithIncorrectEmail() {
         loginSteps.openPage()
                 .attemptToLogin(INCORRECT_EMAIL, AuthenticationPage.PASSWORD)
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
                 .validateErrorMessageWithIncorrectEmail();
     }
 
-    @Test
+    @Test(description = "Try to log in with an incorrect password")
     public void loginWithIncorrectPassword() {
         loginSteps.openPage()
                 .attemptToLogin(AuthenticationPage.EMAIL, INCORRECT_PASSWORD)
@@ -33,7 +33,7 @@ public class LoginTest extends BaseTest {
                 .validateErrorMessageWithIncorrectPassword();
     }
 
-    @Test
+    @Test(description = "Try to log in with an empty email")
     public void emailShouldBeEmpty() {
         loginSteps.openPage()
                 .attemptToLogin(EMPTY_STRING, AuthenticationPage.PASSWORD)
@@ -41,7 +41,7 @@ public class LoginTest extends BaseTest {
                 .validateErrorMessageWithEmptyEmail();
     }
 
-    @Test
+    @Test(description = "Try to log in with an empty password")
     public void passwordShouldBeEmpty() {
         loginSteps.openPage()
                 .attemptToLogin(AuthenticationPage.EMAIL, EMPTY_STRING)

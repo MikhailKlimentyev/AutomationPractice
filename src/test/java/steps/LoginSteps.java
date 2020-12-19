@@ -5,11 +5,10 @@ import models.User;
 import org.openqa.selenium.WebDriver;
 import pages.AccountPage;
 import pages.AuthenticationPage;
-import tests.BaseTest;
 
 import static org.testng.Assert.assertEquals;
 
-public class LoginSteps extends BaseTest {
+public class LoginSteps {
 
     AuthenticationPage authenticationPage;
     AccountPage accountPage;
@@ -25,7 +24,7 @@ public class LoginSteps extends BaseTest {
         return this;
     }
 
-    @Step("Fill in the email and password fields")
+    @Step("Fill in the email {email} and password {password} fields")
     public LoginSteps attemptToLogin(String email, String password) {
         authenticationPage.filInTheEmailField(email);
         authenticationPage.filInThePasswordField(password);

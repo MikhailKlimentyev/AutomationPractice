@@ -31,11 +31,11 @@ public class AuthenticationPage extends BasePage {
         return this;
     }
 
-    public void clickLoginButton() {
+    public AccountPage clickLoginButton() {
         driver.findElement(SIGN_IN_BUTTON).click();
+        return new AccountPage(driver);
     }
 
-    // TO DO переход на страниу мой аккаунт
     public String getErrorMessage() {
         return driver.findElement(ERROR).getText();
     }

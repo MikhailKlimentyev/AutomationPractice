@@ -5,12 +5,12 @@ import utils.TestData;
 
 public class CreateAccountTest extends BaseTest {
 
-    @Test
+    @Test(description = "New User creation with valid data")
     public void createNewUser() {
         createAccountSteps
-                .openPage(TestData.newUser().getEmail())
+                .openPage(TestData.newUser())
                 .fillRequiredRegisterData(TestData.newUser())
-                .clickRegisterButton();
-//                .checkRegistrationSuccessful();
+                .clickRegisterButton()
+                .checkLoginSuccessful(TestData.newUser());
     }
 }
