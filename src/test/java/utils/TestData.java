@@ -10,7 +10,7 @@ public class TestData {
         return User.builder()
                 .firstName("TestFirstName")
                 .lastName("TestLastName")
-                .email("TestEmail" + generateNewEmail() + "@malinator.com")
+                .email("TestEmail2" + generateNewEmail() + "@malinator.com")
                 .password("12345qwer")
                 .address("Test address 12")
                 .city("Minsk")

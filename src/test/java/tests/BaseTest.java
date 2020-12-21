@@ -6,6 +6,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import steps.CartSteps;
 import steps.CreateAccountSteps;
 import steps.LoginSteps;
 import steps.OrderSteps;
@@ -19,6 +20,7 @@ public class BaseTest {
     CreateAccountSteps createAccountSteps;
     LoginSteps loginSteps;
     OrderSteps orderSteps;
+    CartSteps cartSteps;
 
     @BeforeMethod
     public void setup(ITestContext context) {
@@ -32,6 +34,7 @@ public class BaseTest {
         loginSteps = new LoginSteps(driver);
         orderSteps = new OrderSteps(driver);
         createAccountSteps = new CreateAccountSteps(driver);
+        cartSteps = new CartSteps(driver);
         context.setAttribute(variable, driver);
     }
 

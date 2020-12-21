@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class CreateAccountPage extends BasePage {
@@ -15,6 +16,7 @@ public class CreateAccountPage extends BasePage {
     private static final By COUNTRY = By.id("id_country");
     private static final By PHONE = By.id("phone_mobile");
     private static final By REGISTER_BUTTON = By.id("submitAccount");
+    private static final By ERROR = By.cssSelector(".alert.alert-danger");
     public String endpoint = "index.php?controller=authentication&back=my-account#account-creation";
 
     public CreateAccountPage(WebDriver driver) {
@@ -72,9 +74,13 @@ public class CreateAccountPage extends BasePage {
         return new CreateAccountPage(driver);
     }
 
-
     public BasePage isPageOpened() {
         isPageOpened(REGISTER_BUTTON);
         return this;
+    }
+
+    public String getErrorMessage() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ERROR));
+        return driver.findElement(ERROR).getText();
     }
 }

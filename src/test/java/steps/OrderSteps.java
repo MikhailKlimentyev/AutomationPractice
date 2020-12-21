@@ -12,12 +12,14 @@ public class OrderSteps {
     AccountPage accountPage;
     ProductPage productPage;
     OrderPage orderPage;
+    CartPage cartPage;
 
     public OrderSteps(WebDriver driver) {
         homePage = new HomePage(driver);
         accountPage = new AccountPage(driver);
         productPage = new ProductPage(driver);
         orderPage = new OrderPage(driver);
+        cartPage = new CartPage(driver);
     }
 
     @Step("Open Home page and login")
@@ -58,9 +60,50 @@ public class OrderSteps {
         return this;
     }
 
-    @Step("Submit summary")
-    public OrderSteps submitSummary() {
-        orderPage.clickProceedToCheckoutSummaryButton();
+    @Step("Confirm summary")
+    public OrderSteps confirmSummary() {
+        cartPage.clickProceedToCheckoutSummaryButton();
         return this;
+    }
+
+    @Step("Confirm Address")
+    public OrderSteps confirmAddress() {
+        orderPage.clickProceedToCheckoutAddressButton();
+        return this;
+    }
+
+    @Step("Agree to the terms of service and will adhere to them unconditionally.")
+    public OrderSteps agreeToTheTermsOfService() {
+        orderPage.setCgvCheckbox();
+        orderPage.clickProceedToCheckoutShippingButton();
+        return this;
+    }
+
+    @Step("Select payment by Bank Wire")
+    public OrderSteps payByBankWire() {
+        orderPage.clickPayByBankWireButton();
+        return this;
+    }
+
+    @Step("Select payment by Check")
+    public OrderSteps payByCheck() {
+        orderPage.clickPayByCheckButton();
+        return this;
+    }
+
+    @Step("Confirm Order")
+    public OrderSteps confirmOrder() {
+        orderPage.clickConfirmOrderButton();
+        return this;
+    }
+
+    @Step("Check order successful")
+    public void checkOrderSuccessfulPaymentByCheck() {
+        assertEquals(orderPage.getOrderSuccessfulTextPaymentByCheck(), "Your order on My Store is complete.");
+    }
+
+    @Step("Check order successful")
+    public void checkOrderSuccessfulPaymentByBankWire() {
+        assertEquals(orderPage.getOrderSuccessfulTextPaymentByBankWire(), "Your order on My Store is complete.");
     }
 }

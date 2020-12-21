@@ -57,4 +57,18 @@ public class CreateAccountSteps extends BaseTest {
     public void checkLoginSuccessful(User user) {
         assertEquals(accountPage.getHeadingUserName(), user.getFirstName() + " " + user.getLastName());
     }
+
+    @Step("Fill in registered {email}")
+    public CreateAccountSteps fillInRegisteredUserData(String email) {
+        authenticationPage
+                .openPage()
+                .setEmailCreate(email)
+                .clickCreateAccountButton();
+        return this;
+    }
+
+    @Step("Check error message after clicking Create account button with already registered email")
+    public void checkRegisteredEmailError() {
+        assertEquals(createAccountPage.getErrorMessage(), "An account using this email address has already been registered. Please enter a valid password or request a new one.");
+    }
 }
