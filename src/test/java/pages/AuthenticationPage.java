@@ -15,6 +15,7 @@ public class AuthenticationPage extends BasePage {
     private static final By ERROR = By.cssSelector(".alert.alert-danger");
     private static final By CREATE_ACCOUNT_BUTTON = By.id("SubmitCreate");
     private static final By SIGN_IN_BUTTON = By.id("SubmitLogin");
+    private static final By SIGN_OUT_BUTTON = By.cssSelector(".logout");
     public String endpoint = "index.php?controller=authentication&back=my-account";
 
     public AuthenticationPage(WebDriver driver) {
@@ -53,6 +54,16 @@ public class AuthenticationPage extends BasePage {
     public AuthenticationPage openPage() {
         openPage(URL, endpoint);
         isPageOpened(SIGN_IN_BUTTON);
+        return this;
+    }
+
+    public AuthenticationPage clickLogOutButton() {
+        driver.findElement(SIGN_OUT_BUTTON).click();
+        return this;
+    }
+
+    public AuthenticationPage visibilityOfTheLoginButton() {
+        driver.findElement(SIGN_IN_BUTTON).isDisplayed();
         return this;
     }
 }

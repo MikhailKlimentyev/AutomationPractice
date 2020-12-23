@@ -37,18 +37,24 @@ public class LoginSteps {
         return this;
     }
 
+    @Step("Click Log Out button")
+    public LoginSteps clickSignOutButton() {
+        authenticationPage.clickLogOutButton();
+        return this;
+    }
+
     @Step("Check Login successful")
     public void checkLoginSuccessful(User user) {
         assertEquals(accountPage.getHeadingUserName(), user.getFirstName() + " " + user.getLastName());
     }
 
-    @Step("Check Login unsuccessful with incorrect email")
-    public void validateErrorMessageWithIncorrectEmail() {
+    @Step("Check Login unsuccessful with invalid email")
+    public void validateErrorMessageWithInvalidEmail() {
         assertEquals(authenticationPage.getErrorMessage(), "There is 1 error\n" + "Invalid email address.");
     }
 
-    @Step("Check Login unsuccessful with incorrect password")
-    public void validateErrorMessageWithIncorrectPassword() {
+    @Step("Check Login unsuccessful with incorrect data ")
+    public void validateErrorMessageWithIncorrectData() {
         assertEquals(authenticationPage.getErrorMessage(), "There is 1 error\n" + "Authentication failed.");
     }
 
@@ -62,4 +68,8 @@ public class LoginSteps {
         assertEquals(authenticationPage.getErrorMessage(), "There is 1 error\n" + "An email address required.");
     }
 
+    @Step("Check Log Out successful")
+    public void checkLogOutSuccessful() {
+        authenticationPage.visibilityOfTheLoginButton();
+    }
 }
