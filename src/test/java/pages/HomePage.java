@@ -7,11 +7,9 @@ import org.openqa.selenium.WebDriver;
 @Log4j2
 public class HomePage extends BasePage {
 
-    private static final By SEARCH_INPUT = By.name("search_query");
-    private static final By SEARCH_BUTTON = By.name("submit_search");
     private static final By SIGN_IN_BUTTON = By.className("login");
     private static final By POPULAR_BUTTON = By.xpath("//li[@class='active']//a");
-    private static final By CART_BUTTON = By.className("account");
+
     public String endpoint = "index.php";
 
     public HomePage(WebDriver driver) {

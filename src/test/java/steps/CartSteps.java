@@ -9,6 +9,7 @@ import pages.ProductPage;
 import static org.testng.Assert.assertEquals;
 
 public class CartSteps {
+
     HomePage homePage;
     ProductPage productPage;
     CartPage cartPage;
@@ -34,9 +35,9 @@ public class CartSteps {
     @Step("Add product to Cart with count: {productQuantity}")
     public CartSteps addProductToCart(int productQuantity) {
         productPage
-                .setProductQuantity(productQuantity)
-                .clickAddToCartButton()
-                .clickProceedToCheckoutButton();
+            .setProductQuantity(productQuantity)
+            .clickAddToCartButton()
+            .clickProceedToCheckoutButton();
         return this;
     }
 

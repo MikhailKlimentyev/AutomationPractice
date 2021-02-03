@@ -10,6 +10,7 @@ public class CartPage extends BasePage {
     private static final By CART_QUANTITY_TEXT = By.cssSelector(".cart_quantity_input");
     private static final By REMOVE_FROM_CART_BUTTON = By.cssSelector(".icon-trash");
     private static final By NOTIFICATION = By.cssSelector(".alert.alert-warning");
+
     public String endpoint = "index.php?controller=order";
 
     public CartPage(WebDriver driver) {

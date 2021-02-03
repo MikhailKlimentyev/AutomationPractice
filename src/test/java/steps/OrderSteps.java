@@ -8,6 +8,7 @@ import pages.*;
 import static org.testng.Assert.assertEquals;
 
 public class OrderSteps {
+
     HomePage homePage;
     AccountPage accountPage;
     ProductPage productPage;
@@ -25,11 +26,11 @@ public class OrderSteps {
     @Step("Open Home page and login")
     public OrderSteps login(String email, String password, User user) {
         homePage
-                .openPage()
-                .clickSignInButton()
-                .filInTheEmailField(AuthenticationPage.EMAIL)
-                .filInThePasswordField(AuthenticationPage.PASSWORD)
-                .clickLoginButton();
+            .openPage()
+            .clickSignInButton()
+            .filInTheEmailField(email)
+            .filInThePasswordField(password)
+            .clickLoginButton();
         assertEquals(accountPage.getHeadingUserName(), user.getFirstName() + " " + user.getLastName());
         return this;
     }
@@ -39,9 +40,9 @@ public class OrderSteps {
         accountPage.clickOnLogo();
         homePage.openProductByName(productName);
         productPage
-                .setProductQuantity(productQuantity)
-                .setProductSize(productSize)
-                .clickAddToCartButton();
+            .setProductQuantity(productQuantity)
+            .setProductSize(productSize)
+            .clickAddToCartButton();
         return this;
     }
 
@@ -55,7 +56,8 @@ public class OrderSteps {
     public OrderSteps checkDeliveryAddressInfo(User user) {
         assertEquals(orderPage.getAddressName(), user.getFirstName() + " " + user.getLastName());
         assertEquals(orderPage.getAddress(), user.getAddress());
-        assertEquals(orderPage.getAddressCity(), user.getCity() + ", " + user.getState() + " " + user.getPostalCode());
+        assertEquals(orderPage.getAddressCity(), user.getCity() + ", " + user.getState() +
+            " " + user.getPostalCode());
         assertEquals(orderPage.getAddressPhone(), user.getPhone());
         return this;
     }

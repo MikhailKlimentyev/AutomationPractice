@@ -11,6 +11,7 @@ import tests.BaseTest;
 import static org.testng.Assert.assertEquals;
 
 public class CreateAccountSteps extends BaseTest {
+
     CreateAccountPage createAccountPage;
     AuthenticationPage authenticationPage;
     AccountPage accountPage;
@@ -24,26 +25,26 @@ public class CreateAccountSteps extends BaseTest {
     @Step("Fill in new {user.email} and open Create Account page")
     public CreateAccountSteps openPage(User user) {
         authenticationPage
-                .openPage()
-                .setEmailCreate(user.getEmail())
-                .clickCreateAccountButton();
+            .openPage()
+            .setEmailCreate(user.getEmail())
+            .clickCreateAccountButton();
         createAccountPage
-                .isPageOpened();
+            .isPageOpened();
         return this;
     }
 
     @Step("Fill Required Registration data for {user.firstName}")
     public CreateAccountSteps fillRequiredRegisterData(User user) {
         createAccountPage
-                .setFirstName(user.getFirstName())
-                .setLastName(user.getLastName())
-                .setPassword(user.getPassword())
-                .setAddress(user.getAddress())
-                .setCity(user.getCity())
-                .setState(user.getState())
-                .setPostalCode(user.getPostalCode())
-                .setCountry(user.getCountry())
-                .setPhone(user.getPhone());
+            .setFirstName(user.getFirstName())
+            .setLastName(user.getLastName())
+            .setPassword(user.getPassword())
+            .setAddress(user.getAddress())
+            .setCity(user.getCity())
+            .setState(user.getState())
+            .setPostalCode(user.getPostalCode())
+            .setCountry(user.getCountry())
+            .setPhone(user.getPhone());
         return this;
     }
 
@@ -61,14 +62,15 @@ public class CreateAccountSteps extends BaseTest {
     @Step("Fill in registered {email}")
     public CreateAccountSteps fillInRegisteredUserData(String email) {
         authenticationPage
-                .openPage()
-                .setEmailCreate(email)
-                .clickCreateAccountButton();
+            .openPage()
+            .setEmailCreate(email)
+            .clickCreateAccountButton();
         return this;
     }
 
     @Step("Check error message after clicking Create account button with already registered email")
     public void checkRegisteredEmailError() {
-        assertEquals(createAccountPage.getErrorMessage(), "An account using this email address has already been registered. Please enter a valid password or request a new one.");
+        assertEquals(createAccountPage.getErrorMessage(), "An account using this email address" +
+            " has already been registered. Please enter a valid password or request a new one.");
     }
 }

@@ -10,6 +10,7 @@ import org.testng.Assert;
 public abstract class BasePage {
 
     public static final String URL = "http://automationpractice.com/";
+
     WebDriver driver;
     WebDriverWait wait;
 
@@ -31,5 +32,4 @@ public abstract class BasePage {
         driver.get(URL + endpoint);
         return this;
     }
-
 }

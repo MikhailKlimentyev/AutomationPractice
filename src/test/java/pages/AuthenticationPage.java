@@ -4,11 +4,14 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import static utils.PropertyReader.getProperty;
+
 @Log4j2
 public class AuthenticationPage extends BasePage {
 
-    public static final String EMAIL = System.getenv("email");
-    public static final String PASSWORD = System.getenv("password");
+    public static final String EMAIL = getProperty("email", "email");
+    public static final String PASSWORD = getProperty("password", "password");
+
     private static final By EMAIL_CREATE_INPUT = By.id("email_create");
     private static final By EMAIL_INPUT = By.id("email");
     private static final By PASSWORD_INPUT = By.id("passwd");
@@ -16,6 +19,7 @@ public class AuthenticationPage extends BasePage {
     private static final By CREATE_ACCOUNT_BUTTON = By.id("SubmitCreate");
     private static final By SIGN_IN_BUTTON = By.id("SubmitLogin");
     private static final By SIGN_OUT_BUTTON = By.cssSelector(".logout");
+
     public String endpoint = "index.php?controller=authentication&back=my-account";
 
     public AuthenticationPage(WebDriver driver) {

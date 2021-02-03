@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 public class CreateAccountPage extends BasePage {
+
     private static final By FIRST_NAME = By.id("customer_firstname");
     private static final By LAST_NAME = By.id("customer_lastname");
     private static final By PASSWORD = By.id("passwd");
@@ -17,7 +18,6 @@ public class CreateAccountPage extends BasePage {
     private static final By PHONE = By.id("phone_mobile");
     private static final By REGISTER_BUTTON = By.id("submitAccount");
     private static final By ERROR = By.cssSelector(".alert.alert-danger");
-    public String endpoint = "index.php?controller=authentication&back=my-account#account-creation";
 
     public CreateAccountPage(WebDriver driver) {
         super(driver);
