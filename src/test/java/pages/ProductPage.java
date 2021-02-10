@@ -5,9 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class ProductPage extends BasePage {
+
     private static final By WANTED_QUANTITY = By.cssSelector("#quantity_wanted");
     private static final By WANTED_SIZE = By.cssSelector("#group_1");
-    private static final By CART_QUANTITY_TEXT = By.cssSelector(".ajax_cart_quantity");
     private static final By ADD_TO_CART_BUTTON = By.name("Submit");
     private static final By PROCEED_TO_CHECKOUT_BUTTON = By.xpath("//a[@class='btn btn-default button button-medium']");
 

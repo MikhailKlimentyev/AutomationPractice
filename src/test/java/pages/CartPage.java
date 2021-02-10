@@ -10,6 +10,7 @@ public class CartPage extends BasePage {
     private static final By CART_QUANTITY_TEXT = By.cssSelector(".cart_quantity_input");
     private static final By REMOVE_FROM_CART_BUTTON = By.cssSelector(".icon-trash");
     private static final By NOTIFICATION = By.cssSelector(".alert.alert-warning");
+
     public String endpoint = "index.php?controller=order";
 
     public CartPage(WebDriver driver) {
@@ -31,14 +32,14 @@ public class CartPage extends BasePage {
         return this;
     }
 
-    public int getCartQuantity() {
+    public String getCartQuantity() {
         String quantity;
         if (driver.findElement(CART_QUANTITY_TEXT).isDisplayed()) {
             quantity = driver.findElement(CART_QUANTITY_TEXT).getAttribute("value");
         } else {
             quantity = "0";
         }
-        return Integer.parseInt(quantity);
+        return quantity;
     }
 
     public String getNotificationMessage() {

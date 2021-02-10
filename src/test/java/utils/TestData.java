@@ -8,17 +8,17 @@ public class TestData {
 
     public static User newUser() {
         return User.builder()
-                .firstName("TestFirstName")
-                .lastName("TestLastName")
-                .email("TestEmail2" + generateNewEmail() + "@malinator.com")
-                .password("12345qwer")
-                .address("Test address 12")
-                .city("Minsk")
-                .state("Florida")
-                .postalCode("12345")
-                .country("United States")
-                .phone("37529123456")
-                .build();
+            .firstName("Mike")
+            .lastName("John")
+            .email("TestEmail2" + generateNewEmail() + "@malinator.com")
+            .password("12345qwer")
+            .address("Real Madrid, 5")
+            .city("Milan")
+            .state("Arizona")
+            .postalCode("00000")
+            .country("United States")
+            .phone("666")
+            .build();
     }
 
     private static String generateNewEmail() {
