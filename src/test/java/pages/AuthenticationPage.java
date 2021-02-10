@@ -26,12 +26,12 @@ public class AuthenticationPage extends BasePage {
         super(driver);
     }
 
-    public AuthenticationPage filInTheEmailField(String email) {
+    public AuthenticationPage fillInTheEmailField(String email) {
         driver.findElement(EMAIL_INPUT).sendKeys(email);
         return this;
     }
 
-    public AuthenticationPage filInThePasswordField(String password) {
+    public AuthenticationPage fillInThePasswordField(String password) {
         driver.findElement(PASSWORD_INPUT).sendKeys(password);
         return this;
     }

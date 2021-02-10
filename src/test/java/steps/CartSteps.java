@@ -1,61 +1,38 @@
 package steps;
 
-import io.qameta.allure.Step;
-import org.openqa.selenium.WebDriver;
-import pages.CartPage;
-import pages.HomePage;
-import pages.ProductPage;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 
 import static org.testng.Assert.assertEquals;
 
 public class CartSteps {
 
-    HomePage homePage;
-    ProductPage productPage;
-    CartPage cartPage;
+    BaseSteps baseSteps;
 
-    public CartSteps(WebDriver driver) {
-        homePage = new HomePage(driver);
-        productPage = new ProductPage(driver);
-        cartPage = new CartPage(driver);
+    public CartSteps(BaseSteps baseSteps) {
+        this.baseSteps = baseSteps;
     }
 
-    @Step("Open Home page")
-    public CartSteps openPage() {
-        homePage.openPage();
-        return this;
+    @Given("Open home page")
+    public void openHomePage() {
+        baseSteps.homePage.openPage();
     }
 
-    @Step("Open Product page by Product name: {productName}")
-    public CartSteps openProductByName(String productName) {
-        homePage.openProductByName(productName);
-        return this;
+    @Then("Number of products in cart is {string}")
+    public void numberOfProductsInCartIs(String expectedCartQuantity) {
+        String cartQuantity = baseSteps.cartPage.getCartQuantity();
+        assertEquals(cartQuantity, expectedCartQuantity);
     }
 
-    @Step("Add product to Cart with count: {productQuantity}")
-    public CartSteps addProductToCart(int productQuantity) {
-        productPage
-            .setProductQuantity(productQuantity)
-            .clickAddToCartButton()
-            .clickProceedToCheckoutButton();
-        return this;
+    @And("Remove product from cart")
+    public void removeProductFromCart() {
+        baseSteps.cartPage.clickRemoveProductFromCartButton();
     }
 
-    @Step("Remove product from Cart")
-    public CartSteps removeProductFromCart() {
-        cartPage.clickRemoveProductFromCartButton();
-        return this;
-    }
-
-    @Step("Check number of Products added to Cart")
-    public CartSteps checkNumberOfProductsInCart(int expectedCartQuantity) {
-        assertEquals(cartPage.getCartQuantity(), expectedCartQuantity);
-        return this;
-    }
-
-    @Step("Check that the shopping cart is empty.")
-    public CartSteps validateNotificationMessageWithEmptyShoppingCart() {
-        assertEquals(cartPage.getNotificationMessage(), "Your shopping cart is empty.");
-        return this;
+    @Then("The following message {string} presents on cart page")
+    public void theFollowingMessagePresentsOnCartPage(String expectedMessage) {
+        String notificationMessage = baseSteps.cartPage.getNotificationMessage();
+        assertEquals(notificationMessage, expectedMessage);
     }
 }

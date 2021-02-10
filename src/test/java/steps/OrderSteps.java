@@ -1,111 +1,91 @@
 package steps;
 
-import io.qameta.allure.Step;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import models.User;
-import org.openqa.selenium.WebDriver;
-import pages.*;
+
+import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
 public class OrderSteps {
 
-    HomePage homePage;
-    AccountPage accountPage;
-    ProductPage productPage;
-    OrderPage orderPage;
-    CartPage cartPage;
+    BaseSteps baseSteps;
 
-    public OrderSteps(WebDriver driver) {
-        homePage = new HomePage(driver);
-        accountPage = new AccountPage(driver);
-        productPage = new ProductPage(driver);
-        orderPage = new OrderPage(driver);
-        cartPage = new CartPage(driver);
+    public OrderSteps(BaseSteps baseSteps) {
+        this.baseSteps = baseSteps;
     }
 
-    @Step("Open Home page and login")
-    public OrderSteps login(String email, String password, User user) {
-        homePage
-            .openPage()
-            .clickSignInButton()
-            .filInTheEmailField(email)
-            .filInThePasswordField(password)
-            .clickLoginButton();
-        assertEquals(accountPage.getHeadingUserName(), user.getFirstName() + " " + user.getLastName());
-        return this;
+    @When("Click on Sign In button on home page")
+    public void clickOnSignInButtonOnHomePage() {
+        baseSteps.homePage.clickSignInButton();
     }
 
-    @Step("Add product to Cart with name: {productName} with quantity: {productQuantity}")
-    public OrderSteps addProductToCart(String productName, int productQuantity, String productSize) {
-        accountPage.clickOnLogo();
-        homePage.openProductByName(productName);
-        productPage
-            .setProductQuantity(productQuantity)
-            .setProductSize(productSize)
-            .clickAddToCartButton();
-        return this;
+    @And("Click on logo")
+    public void clickOnLogo() {
+        baseSteps.accountPage.clickOnLogo();
     }
 
-    @Step("Go to checkout")
-    public OrderSteps goToCheckout() {
-        productPage.clickProceedToCheckoutButton();
-        return this;
+    @And("Set product size {string}")
+    public void setProductSize(String size) {
+        baseSteps.productPage.setProductSize(size);
     }
 
-    @Step("Check delivery address")
-    public OrderSteps checkDeliveryAddressInfo(User user) {
-        assertEquals(orderPage.getAddressName(), user.getFirstName() + " " + user.getLastName());
-        assertEquals(orderPage.getAddress(), user.getAddress());
-        assertEquals(orderPage.getAddressCity(), user.getCity() + ", " + user.getState() +
+    @Then("Delivery address info equals info of user")
+    public void deliveryAddressInfoEqualsToUser(List<User> users) {
+        User user = users.get(0);
+        assertEquals(baseSteps.orderPage.getAddressName(), user.getFirstName() + " " + user.getLastName());
+        assertEquals(baseSteps.orderPage.getAddress(), user.getAddress());
+        assertEquals(baseSteps.orderPage.getAddressCity(), user.getCity() + ", " + user.getState() +
             " " + user.getPostalCode());
-        assertEquals(orderPage.getAddressPhone(), user.getPhone());
-        return this;
+        assertEquals(baseSteps.orderPage.getAddressPhone(), user.getPhone());
     }
 
-    @Step("Confirm summary")
-    public OrderSteps confirmSummary() {
-        cartPage.clickProceedToCheckoutSummaryButton();
-        return this;
+    @And("Click on Proceed To Checkout Summary button")
+    public void clickOnProceedToCheckoutSummaryButton() {
+        baseSteps.cartPage.clickProceedToCheckoutSummaryButton();
     }
 
-    @Step("Confirm Address")
-    public OrderSteps confirmAddress() {
-        orderPage.clickProceedToCheckoutAddressButton();
-        return this;
+    @And("Click on Proceed To Checkout Address button")
+    public void clickOnProceedToCheckoutAddressButton() {
+        baseSteps.orderPage.clickProceedToCheckoutAddressButton();
     }
 
-    @Step("Agree to the terms of service and will adhere to them unconditionally.")
-    public OrderSteps agreeToTheTermsOfService() {
-        orderPage.setCgvCheckbox();
-        orderPage.clickProceedToCheckoutShippingButton();
-        return this;
+    @And("Set Cgv checkbox")
+    public void setCgvCheckbox() {
+        baseSteps.orderPage.setCgvCheckbox();
     }
 
-    @Step("Select payment by Bank Wire")
-    public OrderSteps payByBankWire() {
-        orderPage.clickPayByBankWireButton();
-        return this;
+    @And("Click on Proceed To Checkout Shipping button")
+    public void clickOnProceedToCheckoutShippingButton() {
+        baseSteps.orderPage.clickProceedToCheckoutShippingButton();
     }
 
-    @Step("Select payment by Check")
-    public OrderSteps payByCheck() {
-        orderPage.clickPayByCheckButton();
-        return this;
+    @And("Click on Pay by bank wire button")
+    public void clickOnPayByBankWireButton() {
+        baseSteps.orderPage.clickPayByBankWireButton();
     }
 
-    @Step("Confirm Order")
-    public OrderSteps confirmOrder() {
-        orderPage.clickConfirmOrderButton();
-        return this;
+    @And("Click on Confirm Order button")
+    public void clickOnConfirmOrderButton() {
+        baseSteps.orderPage.clickConfirmOrderButton();
     }
 
-    @Step("Check order successful")
-    public void checkOrderSuccessfulPaymentByCheck() {
-        assertEquals(orderPage.getOrderSuccessfulTextPaymentByCheck(), "Your order on My Store is complete.");
+    @Then("On Order confirmation page {string} message appears for pay by bank wire")
+    public void onOrderConfirmationPageMessageAppears(String expectedMessage) {
+        String message = baseSteps.orderPage.getOrderSuccessfulTextPaymentByBankWire();
+        assertEquals(message, expectedMessage);
     }
 
-    @Step("Check order successful")
-    public void checkOrderSuccessfulPaymentByBankWire() {
-        assertEquals(orderPage.getOrderSuccessfulTextPaymentByBankWire(), "Your order on My Store is complete.");
+    @And("Click on Pay By Check button")
+    public void clickOnPayByCheckButton() {
+        baseSteps.orderPage.clickPayByCheckButton();
+    }
+
+    @Then("On Order confirmation page {string} message appears for pay by check")
+    public void onOrderConfirmationPageMessageAppearsForPayByCheck(String expectedMessage) {
+        String actualMessage = baseSteps.orderPage.getOrderSuccessfulTextPaymentByCheck();
+        assertEquals(actualMessage, expectedMessage);
     }
 }

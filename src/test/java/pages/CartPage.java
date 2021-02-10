@@ -32,14 +32,14 @@ public class CartPage extends BasePage {
         return this;
     }
 
-    public int getCartQuantity() {
+    public String getCartQuantity() {
         String quantity;
         if (driver.findElement(CART_QUANTITY_TEXT).isDisplayed()) {
             quantity = driver.findElement(CART_QUANTITY_TEXT).getAttribute("value");
         } else {
             quantity = "0";
         }
-        return Integer.parseInt(quantity);
+        return quantity;
     }
 
     public String getNotificationMessage() {
