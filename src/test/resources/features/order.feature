@@ -34,11 +34,13 @@ Feature: Order
       And Set Cgv checkbox
       And Click on Proceed To Checkout Shipping button
 
+    @regression
     Scenario: Complete order processing from login to payment verification and choose payment by bank wire
       When Click on Pay by bank wire button
       And Click on Confirm Order button
       Then On Order confirmation page "Your order on My Store is complete." message appears for pay by bank wire
 
+    @regression
     Scenario: Complete order processing from login to payment verification and choose payment by check
       When Click on Pay By Check button
       And Click on Confirm Order button

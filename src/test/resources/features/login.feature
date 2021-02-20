@@ -3,7 +3,9 @@ Feature: Login
   Background:
     Given Open login page
 
+  @smoke
   Scenario: Successful logIn
+    Given Open login page
     When Fill in email field with "email" value
     And Fill in password field with "password" value
     And Click on Sign In button
@@ -23,7 +25,9 @@ Feature: Login
       | ""                           | "password"           | "An email address required." |
       | "email"                      | ""                   | "Password is required."      |
 
+  @regression
   Scenario: Successful logOut
+    Given Open login page
     When Fill in email field with "email" value
     And Fill in password field with "password" value
     And Click on Sign In button

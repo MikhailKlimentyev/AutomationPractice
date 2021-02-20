@@ -6,8 +6,9 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
     features = {"classpath:features"},
     glue = "steps",
+    tags = "@smoke",
     plugin = {"pretty", "html:target/cucumber.html",
         "json:target/cucumber.json"}
 )
-public class AutomationPracticeTest extends AbstractTestNGCucumberTests {
+public class SmokeTest extends AbstractTestNGCucumberTests {
 }
